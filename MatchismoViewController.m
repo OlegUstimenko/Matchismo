@@ -42,7 +42,8 @@
 //update the UI: set the cards and labels according to the model
 - (void)updateUI
 {
-    UIImage *cardBackImage = [UIImage imageNamed:@"cardbackblack.jpg"];
+    UIImage *cardBackImage = [UIImage imageNamed:@"cardback.png"];
+    UIImage *cardFrontImage = [UIImage imageNamed:@"cardfront.png"];
     
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
@@ -50,10 +51,9 @@
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
         
         if (card.isFaceUp)
-            [cardButton setBackgroundImage:nil forState:UIControlStateNormal];
+            [cardButton setBackgroundImage:cardFrontImage forState:UIControlStateNormal];
         else
             [cardButton setBackgroundImage:cardBackImage forState:UIControlStateNormal];
-        
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUplayable;
         cardButton.alpha = card.isUplayable ? 0.3 : 1.0;
